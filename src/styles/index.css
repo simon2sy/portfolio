@@ -1,0 +1,305 @@
+@import 'tailwindcss';
+
+@theme {
+  /* ---------------------------------------------------------------
+     Color — dim-white paper canvas, near-black type, violet→cyan accent
+     --------------------------------------------------------------- */
+  --color-ink: #f4f4f1;
+  --color-ink-raised: #ffffff;
+  --color-ink-overlay: #fafaf8;
+
+  --color-paper: #16181d;
+  --color-paper-dim: #4b4f58;
+  --color-paper-faint: #7a7e88;
+
+  --color-line: rgb(22 24 29 / 0.12);
+  --color-line-strong: rgb(22 24 29 / 0.28);
+
+  --color-accent: #7c3aed;
+  --color-accent-dim: #6d28d9;
+  --color-accent-2: #0891b2;
+
+  --gradient-accent: linear-gradient(120deg, #7c3aed 0%, #6d28d9 40%, #0891b2 100%);
+
+  --glow-accent: 0 10px 32px -12px rgb(124 58 237 / 0.45);
+  --glow-accent-2: 0 10px 32px -12px rgb(8 145 178 / 0.35);
+
+  /* ---------------------------------------------------------------
+     Type — one clean grotesque for everything, mono only for metadata
+     --------------------------------------------------------------- */
+  --font-display: 'Inter Variable', Inter, system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter Variable', Inter, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Mono', monospace;
+
+  --text-display: clamp(2.5rem, 1.5rem + 4vw, 4.75rem);
+  --text-title: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  --text-heading: clamp(1.35rem, 1.1rem + 1vw, 1.75rem);
+  --text-lead: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
+
+  /* ---------------------------------------------------------------
+     Layout & motion system
+     --------------------------------------------------------------- */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --shadow-card: 0 1px 2px rgb(22 24 29 / 0.05), 0 8px 24px -12px rgb(22 24 29 / 0.12);
+  --shadow-card-hover: 0 2px 4px rgb(22 24 29 / 0.06), 0 24px 48px -20px rgb(22 24 29 / 0.25);
+
+  --animate-signal: signal 2.6s var(--ease-out-quint) infinite;
+  --animate-float-slow: float 10s ease-in-out infinite alternate;
+  --animate-marquee: marquee 38s linear infinite;
+}
+
+@keyframes signal {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes float {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(0, -28px, 0) scale(1.06);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------------------------------------------------------------
+   Base
+   --------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: light;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cfccd2;
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b4b0b8;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Utilities
+   --------------------------------------------------------------- */
+
+@utility shell {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-paper-faint);
+}
+
+@utility rule {
+  border-top: 1px solid var(--color-line);
+}
+
+/* Gradient type for accent words in headlines. */
+@utility gradient-text {
+  background-image: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Shared card surface: quiet at rest, lifts and sharpens on hover. */
+@utility card {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-ink-raised);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.5s var(--ease-out-quint),
+    border-color 0.35s var(--ease-out-quint),
+    box-shadow 0.5s var(--ease-out-quint);
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+    border-color: rgb(124 58 237 / 0.4);
+    box-shadow:
+      var(--shadow-card-hover),
+      0 0 0 1px rgb(124 58 237 / 0.15);
+  }
+}
+
+/* Mouse-tracking glow border — set --mx/--my from pointermove. */
+@utility spotlight {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+      260px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(124 58 237 / 0.45),
+      transparent 75%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.45s var(--ease-out-quint);
+    pointer-events: none;
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    opacity: 1;
+  }
+}
+
+/* Round token chips used across the toolbox and project cards. */
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  padding-block: 0.25rem;
+  padding-inline: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  color: var(--color-paper-dim);
+  transition: color 0.25s var(--ease-out-quint), border-color 0.25s var(--ease-out-quint);
+
+  &:hover {
+    color: var(--color-accent);
+    border-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+  }
+}
+
+/* Two-line clamp for card descriptions. */
+@utility clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* Faint dot grid backdrop that fades out with a mask. */
+@utility dot-grid {
+  background-image: radial-gradient(circle, rgb(22 24 29 / 0.07) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(75% 70% at 50% 20%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(75% 70% at 50% 20%, #000 0%, transparent 100%);
+}
+
+/* Infinite horizontal marquee (duplicate content once for the loop). */
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: var(--animate-marquee);
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Link with an underline that grows from the left on hover. */
+@utility underline-slide {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s var(--ease-out-quint);
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@utility text-balance-tight {
+  text-wrap: balance;
+}

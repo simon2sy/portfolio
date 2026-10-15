@@ -1,0 +1,13 @@
+{
+  "name": "Simon Shrestha — Portfolio",
+  "short_name": "Simon Shrestha",
+  "description": "Portfolio of Simon Shrestha, a full-stack developer from Nepal.",
+  "icons": [
+    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#0b0c0a",
+  "background_color": "#0b0c0a",
+  "display": "standalone",
+  "start_url": "/"
+}
