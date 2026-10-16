@@ -81,10 +81,13 @@ function buildOgSvg() {
     <text x="88" y="150" fill="${FAINT}" font-family="'JetBrains Mono', Consolas, monospace"
       font-size="21" letter-spacing="6">FULL-STACK DEVELOPER &#183; NEPAL</text>
 
-    <text x="84" y="305" fill="${PAPER}" font-family="Georgia, 'Times New Roman', serif"
-      font-size="112">Simon Shrestha</text>
+    <text x="84" y="300" fill="${PAPER}" font-family="Georgia, 'Times New Roman', serif"
+      font-size="102">Simon Shrestha</text>
 
-    <rect x="88" y="345" width="148" height="6" fill="${ACCENT}"/>
+    <text x="88" y="352" fill="${DIM}" font-family="Georgia, 'Times New Roman', serif"
+      font-size="40" font-style="italic">also known as Simon Stha</text>
+
+    <rect x="88" y="382" width="148" height="6" fill="${ACCENT}"/>
 
     <text x="88" y="430" fill="${DIM}" font-family="Georgia, 'Times New Roman', serif"
       font-size="42" font-style="italic">Building useful software for real businesses.</text>

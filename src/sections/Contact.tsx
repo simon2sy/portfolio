@@ -132,7 +132,7 @@ export function Contact() {
           </div>
 
           <p className="font-mono text-xs text-paper-faint">
-            © {year} {profile.name} — {profile.domain}
+            © {year} {profile.fullName} — {profile.domain}
           </p>
 
           <div className="flex items-center gap-6 md:justify-end">

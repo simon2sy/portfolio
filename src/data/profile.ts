@@ -7,6 +7,8 @@
  */
 export const profile = {
   name: 'Simon Shrestha',
+  alternateName: 'Simon Stha',
+  fullName: 'Simon Shrestha (Simon Stha)',
   initials: 'SS',
   role: 'Full-Stack Developer',
   focusLine: 'Backend-focused software developer',
@@ -27,17 +29,18 @@ export const profile = {
     headlineLead: 'Building useful software',
     headlineAccent: 'for real businesses.',
     intro:
-      'I\u2019m Simon Shrestha, a web developer in Nepal building web applications, backend systems, and practical digital products \u2014 from API and database design through to the interfaces people actually use.',
+      'I\u2019m Simon Shrestha, also known as Simon Stha — a web developer in Nepal building web applications, backend systems, and practical digital products \u2014 from API and database design through to the interfaces people actually use.',
   },
   about: {
     lead:
-      'I build practical web applications \u2014 the kind real businesses use to sell products, serve customers, and run day-to-day work.',
+      'I\u2019m Simon Shrestha — also known as Simon Stha. I build practical web applications \u2014 the kind real businesses use to sell products, serve customers, and run day-to-day work.',
     paragraphs: [
       'Most of my work lives on the backend: designing Django applications, shaping REST APIs with Django REST Framework, and modelling data in PostgreSQL so the products on top of them stay reliable. I care about clear interfaces between systems \u2014 well-shaped endpoints, predictable payloads, and authentication that holds up.',
       'I\u2019m equally comfortable wiring those systems into React frontends, so the whole path from database to screen stays in one pair of hands. Everything I know, I\u2019ve learned by shipping real projects: e-commerce stores, business sites, and product frontends that are live and used by actual customers.',
     ],
     facts: [
       { label: 'Based in', value: 'Nepal' },
+      { label: 'Also known as', value: 'Simon Stha' },
       { label: 'Focus', value: 'Backend & full-stack web development' },
       { label: 'Toolchain', value: 'Django, DRF, React, PostgreSQL' },
       { label: 'Shipping since', value: '2023' },

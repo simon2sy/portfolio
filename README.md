@@ -1,6 +1,6 @@
-# simonstha.com.np — Simon Shrestha
+# simonstha.com.np — Simon Shrestha (Simon Stha)
 
-Editorial portfolio for Simon Shrestha ([@simon2sy](https://github.com/simon2sy)) — React + Vite + TypeScript + Tailwind CSS v4, built to deploy on Cloudflare Pages at `https://simonstha.com.np/`.
+Editorial portfolio for Simon Shrestha, also known as Simon Stha ([@simon2sy](https://github.com/simon2sy)) — React + Vite + TypeScript + Tailwind CSS v4, built to deploy on Cloudflare Pages at `https://simonstha.com.np/`.
 
 ## Sections
 
@@ -35,7 +35,7 @@ npm run preview    # serve the production build
 Everything indexable lives on the single canonical URL `https://simonstha.com.np/`:
 
 - **Metadata** — title, meta description, canonical, Open Graph, Twitter card and `theme-color` are hand-maintained in `index.html`. Update them together when copy changes.
-- **Structured data** — one JSON-LD `@graph` in `index.html` with `ProfilePage` + `WebSite` + `Person` (shared `@id`s, `sameAs` for GitHub/Facebook/Instagram). Keep it in sync with visible content; never add claims the page doesn't show.
+- **Structured data** — one JSON-LD `@graph` in `index.html` with `ProfilePage` + `WebSite` (preferred name "Simon Shrestha", `alternateName` "Simon Stha") + `Person` (`name` "Simon Shrestha", `alternateName` "Simon Stha", `sameAs` for GitHub/Facebook/Instagram). Keep it in sync with visible content; never add claims the page doesn't show.
 - **Sitemap** — `scripts/generate-sitemap.mjs` writes `dist/sitemap.xml` during `npm run build` from its `ROUTES` list (canonical, HTTP-200 URLs only — no placeholders). `public/sitemap.xml` intentionally does not exist; the file is generated.
 - **robots.txt** — `public/robots.txt` allows everything and points at the sitemap.
 - **404s** — `public/404.html` (branded, `noindex`) makes Cloudflare Pages return a real `404` for unknown paths. Without a top-level `404.html`, Pages assumes an SPA and serves the homepage with `200` (a soft 404).

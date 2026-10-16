@@ -77,7 +77,7 @@ export function Hero() {
                 <div className="overflow-hidden rounded-md border border-line bg-ink-raised shadow-[0_24px_60px_-40px_rgb(22_24_29/0.4)]">
                   <img
                     src={profile.photo}
-                    alt={`${profile.name} — seated outdoors with a mountain backdrop`}
+                    alt={`${profile.fullName} — seated outdoors with a mountain backdrop`}
                     width={900}
                     height={1600}
                     decoding="async"
@@ -86,7 +86,7 @@ export function Hero() {
                   />
                 </div>
                 <figcaption className="absolute bottom-3 left-3 rounded-full border border-line bg-ink/85 px-3 py-1.5 font-mono text-[0.6875rem] font-medium tracking-[0.12em] text-paper uppercase backdrop-blur-sm">
-                  {profile.name} — {profile.role}
+                  {profile.fullName} — {profile.role}
                 </figcaption>
               </figure>
             </Reveal>
