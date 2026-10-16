@@ -8,11 +8,14 @@
     <title>Simon Shrestha — Full-Stack Developer from Nepal</title>
     <meta
       name="description"
-      content="Simon Shrestha is a full-stack developer from Nepal building web applications, backend systems, and practical digital products with Django, Django REST Framework, React, and PostgreSQL."
+      content="Simon Shrestha is a web developer in Nepal building full-stack apps with Django, Django REST Framework, React and PostgreSQL. See live projects and source code."
     />
     <meta name="author" content="Simon Shrestha" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://simonstha.com.np/" />
+
+    <!-- The GitHub section talks to api.github.com after hydration -->
+    <link rel="preconnect" href="https://api.github.com" crossorigin />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -49,24 +52,50 @@
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "Person",
-            "@id": "https://simonstha.com.np/#person",
-            "name": "Simon Shrestha",
+            "@type": "ProfilePage",
+            "@id": "https://simonstha.com.np/#webpage",
             "url": "https://simonstha.com.np/",
-            "jobTitle": "Full-Stack Developer",
-            "description": "Full-stack developer focused on web applications, backend systems, and practical digital products.",
-            "sameAs": ["https://github.com/simon2sy"],
-            "address": {
-              "@type": "PostalAddress",
-              "addressCountry": "NP"
-            }
+            "name": "Simon Shrestha — Full-Stack Developer from Nepal",
+            "inLanguage": "en",
+            "isPartOf": { "@id": "https://simonstha.com.np/#website" },
+            "mainEntity": { "@id": "https://simonstha.com.np/#person" }
           },
           {
             "@type": "WebSite",
             "@id": "https://simonstha.com.np/#website",
             "url": "https://simonstha.com.np/",
             "name": "Simon Shrestha — Portfolio",
+            "inLanguage": "en",
             "publisher": { "@id": "https://simonstha.com.np/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://simonstha.com.np/#person",
+            "name": "Simon Shrestha",
+            "url": "https://simonstha.com.np/",
+            "image": "https://simonstha.com.np/images/projects/simon-shrestha-portrait.webp",
+            "jobTitle": "Full-Stack Developer",
+            "description": "Full-stack developer from Nepal focused on web applications, backend systems, and practical digital products built with Django, Django REST Framework, React and PostgreSQL.",
+            "knowsAbout": [
+              "Web development",
+              "Django",
+              "Django REST Framework",
+              "Python",
+              "React",
+              "PostgreSQL",
+              "REST API design",
+              "JWT authentication"
+            ],
+            "sameAs": [
+              "https://github.com/simon2sy",
+              "https://www.facebook.com/simon2sy",
+              "https://www.instagram.com/simon2sy"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "NP"
+            },
+            "mainEntityOfPage": { "@id": "https://simonstha.com.np/#webpage" }
           }
         ]
       }

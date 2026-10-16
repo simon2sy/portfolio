@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 
 import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
@@ -13,8 +13,17 @@ if (!container) {
   throw new Error('Root element #root not found in index.html');
 }
 
-createRoot(container).render(
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 );
+
+// `npm run build` prerenders the page into #root (scripts/prerender.mjs), so
+// the production build hydrates that static markup. Dev serves an empty root
+// and renders from scratch.
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}

@@ -9,18 +9,20 @@
  * Source screenshots live in C:\temp\shots (captured with Playwright).
  * Run with: npm run generate:assets
  */
-import { mkdir } from 'node:fs/promises';
+import { mkdir, access } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
 const SHOTS_DIR = 'C:/temp/shots';
 const PUBLIC_DIR = path.resolve(process.cwd(), 'public');
 
-const INK = '#0b0c0a';
-const PAPER = '#efece3';
-const DIM = '#a8a59a';
-const FAINT = '#6f6d64';
-const ACCENT = '#c7f05b';
+// Current site palette (src/styles/index.css @theme): light canvas, dark type,
+// violet→cyan accent. Keep these in sync when the design tokens change.
+const INK = '#f4f4f1';
+const PAPER = '#16181d';
+const DIM = '#4b4f58';
+const FAINT = '#7a7e88';
+const ACCENT = '#7c3aed';
 
 const PROJECT_IDS = [
   'nismita-craft-studio',
@@ -37,6 +39,13 @@ async function buildProjectShots() {
   const outDir = path.join(PUBLIC_DIR, 'images', 'projects');
   await mkdir(outDir, { recursive: true });
 
+  try {
+    await access(path.join(SHOTS_DIR, `${PROJECT_IDS[0]}.png`));
+  } catch {
+    console.log(`projects/*.webp  skipped — source screenshots not found in ${SHOTS_DIR}`);
+    return;
+  }
+
   for (const id of PROJECT_IDS) {
     const src = path.join(SHOTS_DIR, `${id}.png`);
     const out = path.join(outDir, `${id}.webp`);
@@ -45,6 +54,21 @@ async function buildProjectShots() {
       .webp({ quality: 80, effort: 5 })
       .toFile(out);
     console.log(`projects/${id}.webp  ${info.width}x${info.height}  ${info.size}b`);
+  }
+}
+
+/** Hero portrait: source photo -> 900w WebP (reproducible, source kept out of public/). */
+async function buildPortrait() {
+  const src = path.resolve(process.cwd(), 'scripts', 'source', 'simon-shrestha-portrait.jpg');
+  const out = path.join(PUBLIC_DIR, 'images', 'projects', 'simon-shrestha-portrait.webp');
+  try {
+    const info = await sharp(src)
+      .resize({ width: 900, withoutEnlargement: true })
+      .webp({ quality: 80, effort: 5 })
+      .toFile(out);
+    console.log(`projects/simon-shrestha-portrait.webp  ${info.width}x${info.height}  ${info.size}b`);
+  } catch (error) {
+    console.log(`projects/simon-shrestha-portrait.webp  skipped — ${error.message}`);
   }
 }
 
@@ -80,8 +104,8 @@ function buildOgSvg() {
 function buildIconSvg(size) {
   return Buffer.from(`
   <svg width="${size}" height="${size}" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <rect width="64" height="64" rx="14" fill="${INK}"/>
-    <path d="${MONOGRAM_S}" fill="none" stroke="${ACCENT}" stroke-width="7" stroke-linecap="round"/>
+    <rect width="64" height="64" rx="14" fill="${ACCENT}"/>
+    <path d="${MONOGRAM_S}" fill="none" stroke="${INK}" stroke-width="7" stroke-linecap="round"/>
   </svg>`);
 }
 
@@ -107,6 +131,7 @@ async function buildSocialAndIcons() {
 
 try {
   await buildProjectShots();
+  await buildPortrait();
   await buildSocialAndIcons();
   console.log('done.');
 } catch (error) {

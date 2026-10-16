@@ -21,13 +21,13 @@ export const profile = {
   email: '',
   /** Leave empty until a real profile exists — the UI hides it when empty. */
   linkedin: '',
-  /** Hero portrait (public/images/projects — filename contains a space, hence %20). */
-  photo: '/images/projects/simon%20phto.jpeg',
+  /** Hero portrait (WebP — generated from the source photo by scripts/generate-assets.mjs). */
+  photo: '/images/projects/simon-shrestha-portrait.webp',
   hero: {
     headlineLead: 'Building useful software',
     headlineAccent: 'for real businesses.',
     intro:
-      'I\u2019m Simon Shrestha, a developer in Nepal focused on web applications, backend systems, and practical digital products \u2014 from API and database design through to the interfaces people actually use.',
+      'I\u2019m Simon Shrestha, a web developer in Nepal building web applications, backend systems, and practical digital products \u2014 from API and database design through to the interfaces people actually use.',
   },
   about: {
     lead:
